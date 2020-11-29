@@ -2,17 +2,17 @@ use crate::db;
 use crate::error_handler::CustomError;
 use crate::schema::sharks;
 
+use chrono::NaiveDateTime;
 use diesel::prelude::*;
 use serde::{Deserialize, Serialize};
-use std::time::SystemTime;
 
 #[derive(Serialize, Deserialize, Queryable, Insertable)]
 #[table_name = "sharks"]
 pub struct Shark {
     pub id: i32,
     pub name: String,
-    pub created_at: SystemTime,
-    pub updated_at: SystemTime,
+    pub created_at: NaiveDateTime,
+    pub updated_at: NaiveDateTime,
 }
 
 impl Shark {
