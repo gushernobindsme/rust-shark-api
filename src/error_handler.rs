@@ -30,9 +30,7 @@ impl From<DieselError> for CustomError {
     fn from(error: DieselError) -> CustomError {
         match error {
             DieselError::DatabaseError(_, err) => CustomError::new(409, err.message().to_string()),
-            DieselError::NotFound => {
-                CustomError::new(404, "The employee record not found".to_string())
-            }
+            DieselError::NotFound => CustomError::new(404, "record not found".to_string()),
             err => CustomError::new(500, format!("Unknown Diesel error: {}", err)),
         }
     }
